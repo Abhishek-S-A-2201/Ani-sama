@@ -3,11 +3,21 @@ from diffusers import StableDiffusionPipeline
 import os
 from torch import autocast
 
-pre_trained = "./pre_trained/waifu-diffusion"
+# pre_trained = 'hakurei/waifu-diffusion'
+# pre_trained = "./pre_trained/waifu-diffusion"
+# pipe = StableDiffusionPipeline.from_pretrained(
+#     pre_trained,
+#     torch_dtype=torch.float32
+# ).to('mps')
+# pipe.save_pretrained("./pre_trained/waifu-diffusion")
+
+pre_trained_model = "CompVis/stable-diffusion-v1-4"
+# pre_trained_model = "./pre_trained/stable_diffusion_safety_checker"
 pipe = StableDiffusionPipeline.from_pretrained(
-    pre_trained,
+    pre_trained_model,
     torch_dtype=torch.float32
 ).to('mps')
+# pipe.save_pretrained("./pre_trained/stable_diffusion_safety_checker")
 
 
 def save_img(file_path, image):
