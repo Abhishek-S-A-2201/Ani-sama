@@ -1,6 +1,7 @@
 import openai
 import ast
-# openai.api_key = "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"
+from API_TOKENS import OPEN_AI
+openai.api_key = OPEN_AI
 
 example = """{'scenes': [{'description': 'Ken stands in the middle of a deserted street.',
    'characters': ['Ken']},
@@ -49,5 +50,8 @@ def generate_scenes(screenplay: str):
     print("Generating scenes...")
     description = scene_generation_util(screenplay)
     scenes = ast.literal_eval(description)
-    return scenes
+    characters = []
+    for i in scenes["scenes"]:
+        characters.extend(i["characters"])
 
+    return scenes, set(characters)
